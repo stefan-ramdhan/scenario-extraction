@@ -1,0 +1,86 @@
+{
+  "scenario_uuid": "a91d4c7b",
+  "total_frames": 156,
+  "aps": {
+    "lead_vehicle_in_ego_lane_30m": [
+      {
+        "track_id": "a73e1620-a601-402c-9a80-c318faa15716",
+        "rs2v_track_id": 0,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 1,
+            "end_frame": 4,
+            "duration_frames": 4,
+            "start_time_s": 0.1,
+            "end_time_s": 0.4,
+            "duration_s": 0.3,
+            "start_global_time_s": 315970693.95,
+            "end_global_time_s": 315970694.25
+          },
+          {
+            "start_frame": 13,
+            "end_frame": 107,
+            "duration_frames": 95,
+            "start_time_s": 1.3,
+            "end_time_s": 10.7,
+            "duration_s": 9.4,
+            "start_global_time_s": 315970695.15,
+            "end_global_time_s": 315970704.55
+          }
+        ]
+      }
+    ],
+    "lead_vehicle_in_ego_lane_60m": [
+      {
+        "track_id": "a73e1620-a601-402c-9a80-c318faa15716",
+        "rs2v_track_id": 0,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 1,
+            "end_frame": 4,
+            "duration_frames": 4,
+            "start_time_s": 0.1,
+            "end_time_s": 0.4,
+            "duration_s": 0.3,
+            "start_global_time_s": 315970693.95,
+            "end_global_time_s": 315970694.25
+          },
+          {
+            "start_frame": 13,
+            "end_frame": 107,
+            "duration_frames": 95,
+            "start_time_s": 1.3,
+            "end_time_s": 10.7,
+            "duration_s": 9.4,
+            "start_global_time_s": 315970695.15,
+            "end_global_time_s": 315970704.55
+          }
+        ]
+      }
+    ],
+    "cut_in_phase1_veh_in_adj_right_lane": [],
+    "cut_in_phase2_partial_merge": [],
+    "cut_in_phase3_aligned_and_close": [
+      {
+        "track_id": "a73e1620-a601-402c-9a80-c318faa15716",
+        "rs2v_track_id": 0,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 0,
+            "end_frame": 83,
+            "duration_frames": 84,
+            "start_time_s": 0.0,
+            "end_time_s": 8.3,
+            "duration_s": 8.3,
+            "start_global_time_s": 315970693.85,
+            "end_global_time_s": 315970702.15
+          }
+        ]
+      }
+    ],
+    "cut_in_from_right_full_sequence": []
+  }
+}

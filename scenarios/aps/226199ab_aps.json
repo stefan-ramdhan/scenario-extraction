@@ -1,0 +1,76 @@
+{
+  "scenario_uuid": "226199ab",
+  "total_frames": 157,
+  "aps": {
+    "lead_vehicle_in_ego_lane_30m": [
+      {
+        "track_id": "9dc639c9-5a6e-405e-a19a-17de1d03217f",
+        "rs2v_track_id": 87,
+        "object_type": "bus",
+        "instances": [
+          {
+            "start_frame": 17,
+            "end_frame": 63,
+            "duration_frames": 47,
+            "start_time_s": 1.65,
+            "end_time_s": 6.25,
+            "duration_s": 4.6,
+            "start_global_time_s": 315974923.45,
+            "end_global_time_s": 315974928.05
+          },
+          {
+            "start_frame": 147,
+            "end_frame": 156,
+            "duration_frames": 10,
+            "start_time_s": 14.65,
+            "end_time_s": 15.55,
+            "duration_s": 0.9,
+            "start_global_time_s": 315974936.45,
+            "end_global_time_s": 315974937.35
+          }
+        ]
+      }
+    ],
+    "lead_vehicle_in_ego_lane_60m": [
+      {
+        "track_id": "9dc639c9-5a6e-405e-a19a-17de1d03217f",
+        "rs2v_track_id": 87,
+        "object_type": "bus",
+        "instances": [
+          {
+            "start_frame": 17,
+            "end_frame": 156,
+            "duration_frames": 140,
+            "start_time_s": 1.65,
+            "end_time_s": 15.55,
+            "duration_s": 13.9,
+            "start_global_time_s": 315974923.45,
+            "end_global_time_s": 315974937.35
+          }
+        ]
+      }
+    ],
+    "cut_in_phase1_veh_in_adj_right_lane": [],
+    "cut_in_phase2_partial_merge": [],
+    "cut_in_phase3_aligned_and_close": [
+      {
+        "track_id": "9dc639c9-5a6e-405e-a19a-17de1d03217f",
+        "rs2v_track_id": 87,
+        "object_type": "bus",
+        "instances": [
+          {
+            "start_frame": 0,
+            "end_frame": 47,
+            "duration_frames": 48,
+            "start_time_s": 0.0,
+            "end_time_s": 4.65,
+            "duration_s": 4.65,
+            "start_global_time_s": 315974921.8,
+            "end_global_time_s": 315974926.45
+          }
+        ]
+      }
+    ],
+    "cut_in_from_right_full_sequence": []
+  }
+}

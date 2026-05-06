@@ -1,0 +1,152 @@
+{
+  "scenario_uuid": "d33f667d",
+  "total_frames": 156,
+  "aps": {
+    "lead_vehicle_in_ego_lane_30m": [
+      {
+        "track_id": "34fa4cf1-8275-4574-8de2-8d3ecdaee91b",
+        "rs2v_track_id": 45,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 151,
+            "end_frame": 155,
+            "duration_frames": 5,
+            "start_time_s": 15.1,
+            "end_time_s": 15.5,
+            "duration_s": 0.4,
+            "start_global_time_s": 315974943.25,
+            "end_global_time_s": 315974943.65
+          }
+        ]
+      },
+      {
+        "track_id": "4b541efc-279d-47d9-b4f0-c852543bcc0b",
+        "rs2v_track_id": 44,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 1,
+            "end_frame": 30,
+            "duration_frames": 30,
+            "start_time_s": 0.1,
+            "end_time_s": 3.0,
+            "duration_s": 2.9,
+            "start_global_time_s": 315974928.25,
+            "end_global_time_s": 315974931.15
+          }
+        ]
+      }
+    ],
+    "lead_vehicle_in_ego_lane_60m": [
+      {
+        "track_id": "34fa4cf1-8275-4574-8de2-8d3ecdaee91b",
+        "rs2v_track_id": 45,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 151,
+            "end_frame": 155,
+            "duration_frames": 5,
+            "start_time_s": 15.1,
+            "end_time_s": 15.5,
+            "duration_s": 0.4,
+            "start_global_time_s": 315974943.25,
+            "end_global_time_s": 315974943.65
+          }
+        ]
+      },
+      {
+        "track_id": "4b541efc-279d-47d9-b4f0-c852543bcc0b",
+        "rs2v_track_id": 44,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 1,
+            "end_frame": 30,
+            "duration_frames": 30,
+            "start_time_s": 0.1,
+            "end_time_s": 3.0,
+            "duration_s": 2.9,
+            "start_global_time_s": 315974928.25,
+            "end_global_time_s": 315974931.15
+          }
+        ]
+      }
+    ],
+    "cut_in_phase1_veh_in_adj_right_lane": [
+      {
+        "track_id": "34fa4cf1-8275-4574-8de2-8d3ecdaee91b",
+        "rs2v_track_id": 45,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 154,
+            "end_frame": 155,
+            "duration_frames": 2,
+            "start_time_s": 15.4,
+            "end_time_s": 15.5,
+            "duration_s": 0.1,
+            "start_global_time_s": 315974943.55,
+            "end_global_time_s": 315974943.65
+          }
+        ]
+      },
+      {
+        "track_id": "4b541efc-279d-47d9-b4f0-c852543bcc0b",
+        "rs2v_track_id": 44,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 26,
+            "end_frame": 34,
+            "duration_frames": 9,
+            "start_time_s": 2.6,
+            "end_time_s": 3.4,
+            "duration_s": 0.8,
+            "start_global_time_s": 315974930.75,
+            "end_global_time_s": 315974931.55
+          }
+        ]
+      }
+    ],
+    "cut_in_phase2_partial_merge": [],
+    "cut_in_phase3_aligned_and_close": [
+      {
+        "track_id": "34fa4cf1-8275-4574-8de2-8d3ecdaee91b",
+        "rs2v_track_id": 45,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 144,
+            "end_frame": 149,
+            "duration_frames": 6,
+            "start_time_s": 14.4,
+            "end_time_s": 14.9,
+            "duration_s": 0.5,
+            "start_global_time_s": 315974942.55,
+            "end_global_time_s": 315974943.05
+          }
+        ]
+      },
+      {
+        "track_id": "4b541efc-279d-47d9-b4f0-c852543bcc0b",
+        "rs2v_track_id": 44,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 0,
+            "end_frame": 18,
+            "duration_frames": 19,
+            "start_time_s": 0.0,
+            "end_time_s": 1.8,
+            "duration_s": 1.8,
+            "start_global_time_s": 315974928.15,
+            "end_global_time_s": 315974929.95
+          }
+        ]
+      }
+    ],
+    "cut_in_from_right_full_sequence": []
+  }
+}

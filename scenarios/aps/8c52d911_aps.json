@@ -1,0 +1,82 @@
+{
+  "scenario_uuid": "8c52d911",
+  "total_frames": 156,
+  "aps": {
+    "lead_vehicle_in_ego_lane_30m": [],
+    "lead_vehicle_in_ego_lane_60m": [],
+    "cut_in_phase1_veh_in_adj_right_lane": [
+      {
+        "track_id": "396f15b5-9cf3-462b-9164-4b6f71c4e7d6",
+        "rs2v_track_id": 10,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 61,
+            "end_frame": 102,
+            "duration_frames": 42,
+            "start_time_s": 6.1,
+            "end_time_s": 10.2,
+            "duration_s": 4.1,
+            "start_global_time_s": 315969945.25,
+            "end_global_time_s": 315969949.35
+          }
+        ]
+      },
+      {
+        "track_id": "63ced8a0-652b-4663-9318-446bcd0713f9",
+        "rs2v_track_id": 1,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 51,
+            "end_frame": 57,
+            "duration_frames": 7,
+            "start_time_s": 5.1,
+            "end_time_s": 5.7,
+            "duration_s": 0.6,
+            "start_global_time_s": 315969944.25,
+            "end_global_time_s": 315969944.85
+          }
+        ]
+      },
+      {
+        "track_id": "cf467f3d-8294-43a7-9b8f-976b8c610849",
+        "rs2v_track_id": 6,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 60,
+            "end_frame": 70,
+            "duration_frames": 11,
+            "start_time_s": 6.0,
+            "end_time_s": 7.0,
+            "duration_s": 1.0,
+            "start_global_time_s": 315969945.15,
+            "end_global_time_s": 315969946.15
+          }
+        ]
+      }
+    ],
+    "cut_in_phase2_partial_merge": [
+      {
+        "track_id": "2f9a2450-56c1-4510-b6f1-8392df3e03d2",
+        "rs2v_track_id": 12,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 61,
+            "end_frame": 61,
+            "duration_frames": 1,
+            "start_time_s": 6.1,
+            "end_time_s": 6.1,
+            "duration_s": 0.0,
+            "start_global_time_s": 315969945.25,
+            "end_global_time_s": 315969945.25
+          }
+        ]
+      }
+    ],
+    "cut_in_phase3_aligned_and_close": [],
+    "cut_in_from_right_full_sequence": []
+  }
+}

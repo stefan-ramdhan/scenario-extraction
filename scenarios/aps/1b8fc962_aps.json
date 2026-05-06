@@ -1,0 +1,141 @@
+{
+  "scenario_uuid": "1b8fc962",
+  "total_frames": 159,
+  "aps": {
+    "lead_vehicle_in_ego_lane_30m": [
+      {
+        "track_id": "bdb1719c-048f-4ecd-a1c1-1f364b730149",
+        "rs2v_track_id": 0,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 20,
+            "end_frame": 52,
+            "duration_frames": 33,
+            "start_time_s": 2.0,
+            "end_time_s": 5.2,
+            "duration_s": 3.2,
+            "start_global_time_s": 315976465.25,
+            "end_global_time_s": 315976468.45
+          },
+          {
+            "start_frame": 57,
+            "end_frame": 69,
+            "duration_frames": 13,
+            "start_time_s": 5.7,
+            "end_time_s": 6.9,
+            "duration_s": 1.2,
+            "start_global_time_s": 315976468.95,
+            "end_global_time_s": 315976470.15
+          },
+          {
+            "start_frame": 85,
+            "end_frame": 158,
+            "duration_frames": 74,
+            "start_time_s": 8.5,
+            "end_time_s": 15.8,
+            "duration_s": 7.3,
+            "start_global_time_s": 315976471.75,
+            "end_global_time_s": 315976479.05
+          }
+        ]
+      }
+    ],
+    "lead_vehicle_in_ego_lane_60m": [
+      {
+        "track_id": "bdb1719c-048f-4ecd-a1c1-1f364b730149",
+        "rs2v_track_id": 0,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 20,
+            "end_frame": 52,
+            "duration_frames": 33,
+            "start_time_s": 2.0,
+            "end_time_s": 5.2,
+            "duration_s": 3.2,
+            "start_global_time_s": 315976465.25,
+            "end_global_time_s": 315976468.45
+          },
+          {
+            "start_frame": 57,
+            "end_frame": 69,
+            "duration_frames": 13,
+            "start_time_s": 5.7,
+            "end_time_s": 6.9,
+            "duration_s": 1.2,
+            "start_global_time_s": 315976468.95,
+            "end_global_time_s": 315976470.15
+          },
+          {
+            "start_frame": 85,
+            "end_frame": 158,
+            "duration_frames": 74,
+            "start_time_s": 8.5,
+            "end_time_s": 15.8,
+            "duration_s": 7.3,
+            "start_global_time_s": 315976471.75,
+            "end_global_time_s": 315976479.05
+          }
+        ]
+      }
+    ],
+    "cut_in_phase1_veh_in_adj_right_lane": [
+      {
+        "track_id": "40b828d8-a07d-42ee-a0b1-1cd504eb0e11",
+        "rs2v_track_id": 1,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 61,
+            "end_frame": 64,
+            "duration_frames": 4,
+            "start_time_s": 6.1,
+            "end_time_s": 6.4,
+            "duration_s": 0.3,
+            "start_global_time_s": 315976469.35,
+            "end_global_time_s": 315976469.65
+          }
+        ]
+      },
+      {
+        "track_id": "de8dd203-49c3-41b3-bfea-bc92a0d55238",
+        "rs2v_track_id": 8,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 20,
+            "end_frame": 56,
+            "duration_frames": 37,
+            "start_time_s": 2.0,
+            "end_time_s": 5.6,
+            "duration_s": 3.6,
+            "start_global_time_s": 315976465.25,
+            "end_global_time_s": 315976468.85
+          }
+        ]
+      }
+    ],
+    "cut_in_phase2_partial_merge": [],
+    "cut_in_phase3_aligned_and_close": [
+      {
+        "track_id": "bdb1719c-048f-4ecd-a1c1-1f364b730149",
+        "rs2v_track_id": 0,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 0,
+            "end_frame": 63,
+            "duration_frames": 64,
+            "start_time_s": 0.0,
+            "end_time_s": 6.3,
+            "duration_s": 6.3,
+            "start_global_time_s": 315976463.25,
+            "end_global_time_s": 315976469.55
+          }
+        ]
+      }
+    ],
+    "cut_in_from_right_full_sequence": []
+  }
+}

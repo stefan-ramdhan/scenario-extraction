@@ -1,0 +1,84 @@
+{
+  "scenario_uuid": "e1e9d341",
+  "total_frames": 156,
+  "aps": {
+    "lead_vehicle_in_ego_lane_30m": [
+      {
+        "track_id": "2ce3ccb7-5361-4c26-b95a-47ee13cd4e42",
+        "rs2v_track_id": null,
+        "object_type": "motorcycle",
+        "instances": [
+          {
+            "start_frame": 68,
+            "end_frame": 116,
+            "duration_frames": 49,
+            "start_time_s": 6.8,
+            "end_time_s": 11.6,
+            "duration_s": 4.8,
+            "start_global_time_s": 315966536.15,
+            "end_global_time_s": 315966540.95
+          }
+        ]
+      }
+    ],
+    "lead_vehicle_in_ego_lane_60m": [
+      {
+        "track_id": "2ce3ccb7-5361-4c26-b95a-47ee13cd4e42",
+        "rs2v_track_id": null,
+        "object_type": "motorcycle",
+        "instances": [
+          {
+            "start_frame": 38,
+            "end_frame": 116,
+            "duration_frames": 79,
+            "start_time_s": 3.8,
+            "end_time_s": 11.6,
+            "duration_s": 7.8,
+            "start_global_time_s": 315966533.15,
+            "end_global_time_s": 315966540.95
+          }
+        ]
+      }
+    ],
+    "cut_in_phase1_veh_in_adj_right_lane": [
+      {
+        "track_id": "f756e42b-8398-4e56-88a6-3ca0901d14b6",
+        "rs2v_track_id": 0,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 1,
+            "end_frame": 24,
+            "duration_frames": 24,
+            "start_time_s": 0.1,
+            "end_time_s": 2.4,
+            "duration_s": 2.3,
+            "start_global_time_s": 315966529.45,
+            "end_global_time_s": 315966531.75
+          }
+        ]
+      }
+    ],
+    "cut_in_phase2_partial_merge": [],
+    "cut_in_phase3_aligned_and_close": [
+      {
+        "track_id": "2ce3ccb7-5361-4c26-b95a-47ee13cd4e42",
+        "rs2v_track_id": null,
+        "object_type": "motorcycle",
+        "instances": [
+          {
+            "start_frame": 84,
+            "end_frame": 155,
+            "duration_frames": 72,
+            "start_time_s": 8.4,
+            "end_time_s": 15.5,
+            "duration_s": 7.1,
+            "start_global_time_s": 315966537.75,
+            "end_global_time_s": 315966544.85
+          }
+        ]
+      }
+    ],
+    "cut_in_from_right_full_sequence": []
+  }
+}

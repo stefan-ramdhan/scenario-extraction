@@ -1,0 +1,140 @@
+{
+  "scenario_uuid": "ad870270",
+  "total_frames": 157,
+  "aps": {
+    "lead_vehicle_in_ego_lane_30m": [],
+    "lead_vehicle_in_ego_lane_60m": [
+      {
+        "track_id": "a0df2015-7edf-4352-9de3-0095240fd612",
+        "rs2v_track_id": null,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 1,
+            "end_frame": 7,
+            "duration_frames": 7,
+            "start_time_s": 0.1,
+            "end_time_s": 0.7,
+            "duration_s": 0.6,
+            "start_global_time_s": 315969385.25,
+            "end_global_time_s": 315969385.85
+          }
+        ]
+      }
+    ],
+    "cut_in_phase1_veh_in_adj_right_lane": [
+      {
+        "track_id": "a28da22b-dafe-46ff-afbb-8133f08c83a1",
+        "rs2v_track_id": 0,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 1,
+            "end_frame": 131,
+            "duration_frames": 131,
+            "start_time_s": 0.1,
+            "end_time_s": 13.1,
+            "duration_s": 13.0,
+            "start_global_time_s": 315969385.25,
+            "end_global_time_s": 315969398.25
+          }
+        ]
+      },
+      {
+        "track_id": "ebe8cef4-cf95-42a8-9cb1-782d8e9a776c",
+        "rs2v_track_id": 74,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 1,
+            "end_frame": 27,
+            "duration_frames": 27,
+            "start_time_s": 0.1,
+            "end_time_s": 2.7,
+            "duration_s": 2.6,
+            "start_global_time_s": 315969385.25,
+            "end_global_time_s": 315969387.85
+          },
+          {
+            "start_frame": 31,
+            "end_frame": 84,
+            "duration_frames": 54,
+            "start_time_s": 3.1,
+            "end_time_s": 8.4,
+            "duration_s": 5.3,
+            "start_global_time_s": 315969388.25,
+            "end_global_time_s": 315969393.55
+          }
+        ]
+      }
+    ],
+    "cut_in_phase2_partial_merge": [
+      {
+        "track_id": "a28da22b-dafe-46ff-afbb-8133f08c83a1",
+        "rs2v_track_id": 0,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 52,
+            "end_frame": 55,
+            "duration_frames": 4,
+            "start_time_s": 5.2,
+            "end_time_s": 5.5,
+            "duration_s": 0.3,
+            "start_global_time_s": 315969390.35,
+            "end_global_time_s": 315969390.65
+          },
+          {
+            "start_frame": 59,
+            "end_frame": 62,
+            "duration_frames": 4,
+            "start_time_s": 5.9,
+            "end_time_s": 6.2,
+            "duration_s": 0.3,
+            "start_global_time_s": 315969391.05,
+            "end_global_time_s": 315969391.35
+          },
+          {
+            "start_frame": 67,
+            "end_frame": 75,
+            "duration_frames": 9,
+            "start_time_s": 6.7,
+            "end_time_s": 7.5,
+            "duration_s": 0.8,
+            "start_global_time_s": 315969391.85,
+            "end_global_time_s": 315969392.65
+          }
+        ]
+      },
+      {
+        "track_id": "ebe8cef4-cf95-42a8-9cb1-782d8e9a776c",
+        "rs2v_track_id": 74,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 50,
+            "end_frame": 53,
+            "duration_frames": 4,
+            "start_time_s": 5.0,
+            "end_time_s": 5.3,
+            "duration_s": 0.3,
+            "start_global_time_s": 315969390.15,
+            "end_global_time_s": 315969390.45
+          },
+          {
+            "start_frame": 75,
+            "end_frame": 75,
+            "duration_frames": 1,
+            "start_time_s": 7.5,
+            "end_time_s": 7.5,
+            "duration_s": 0.0,
+            "start_global_time_s": 315969392.65,
+            "end_global_time_s": 315969392.65
+          }
+        ]
+      }
+    ],
+    "cut_in_phase3_aligned_and_close": [],
+    "cut_in_from_right_full_sequence": []
+  }
+}

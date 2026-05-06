@@ -1,0 +1,48 @@
+{
+  "scenario_uuid": "df1935dc",
+  "total_frames": 157,
+  "aps": {
+    "lead_vehicle_in_ego_lane_30m": [
+      {
+        "track_id": "30e65460-3bc3-4f7d-bc61-83c2b7335858",
+        "rs2v_track_id": 90,
+        "object_type": "bus",
+        "instances": [
+          {
+            "start_frame": 89,
+            "end_frame": 156,
+            "duration_frames": 68,
+            "start_time_s": 8.9,
+            "end_time_s": 15.6,
+            "duration_s": 6.7,
+            "start_global_time_s": 315967733.55,
+            "end_global_time_s": 315967740.25
+          }
+        ]
+      }
+    ],
+    "lead_vehicle_in_ego_lane_60m": [
+      {
+        "track_id": "30e65460-3bc3-4f7d-bc61-83c2b7335858",
+        "rs2v_track_id": 90,
+        "object_type": "bus",
+        "instances": [
+          {
+            "start_frame": 59,
+            "end_frame": 156,
+            "duration_frames": 98,
+            "start_time_s": 5.9,
+            "end_time_s": 15.6,
+            "duration_s": 9.7,
+            "start_global_time_s": 315967730.55,
+            "end_global_time_s": 315967740.25
+          }
+        ]
+      }
+    ],
+    "cut_in_phase1_veh_in_adj_right_lane": [],
+    "cut_in_phase2_partial_merge": [],
+    "cut_in_phase3_aligned_and_close": [],
+    "cut_in_from_right_full_sequence": []
+  }
+}

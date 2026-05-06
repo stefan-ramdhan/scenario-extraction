@@ -1,0 +1,30 @@
+{
+  "scenario_uuid": "46d917cd",
+  "total_frames": 156,
+  "aps": {
+    "lead_vehicle_in_ego_lane_30m": [],
+    "lead_vehicle_in_ego_lane_60m": [],
+    "cut_in_phase1_veh_in_adj_right_lane": [],
+    "cut_in_phase2_partial_merge": [],
+    "cut_in_phase3_aligned_and_close": [
+      {
+        "track_id": "0929ab53-71fa-4a42-850b-b6b4d405007a",
+        "rs2v_track_id": 121,
+        "object_type": "bus",
+        "instances": [
+          {
+            "start_frame": 134,
+            "end_frame": 137,
+            "duration_frames": 4,
+            "start_time_s": 13.4,
+            "end_time_s": 13.7,
+            "duration_s": 0.3,
+            "start_global_time_s": 315969157.85,
+            "end_global_time_s": 315969158.15
+          }
+        ]
+      }
+    ],
+    "cut_in_from_right_full_sequence": []
+  }
+}

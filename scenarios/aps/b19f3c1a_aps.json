@@ -1,0 +1,84 @@
+{
+  "scenario_uuid": "b19f3c1a",
+  "total_frames": 157,
+  "aps": {
+    "lead_vehicle_in_ego_lane_30m": [
+      {
+        "track_id": "c7be87be-cb54-4ed9-88ea-c657fcc20f05",
+        "rs2v_track_id": 80,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 7,
+            "end_frame": 106,
+            "duration_frames": 100,
+            "start_time_s": 0.7,
+            "end_time_s": 10.6,
+            "duration_s": 9.9,
+            "start_global_time_s": 315973284.15,
+            "end_global_time_s": 315973294.05
+          }
+        ]
+      }
+    ],
+    "lead_vehicle_in_ego_lane_60m": [
+      {
+        "track_id": "c7be87be-cb54-4ed9-88ea-c657fcc20f05",
+        "rs2v_track_id": 80,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 1,
+            "end_frame": 106,
+            "duration_frames": 106,
+            "start_time_s": 0.1,
+            "end_time_s": 10.6,
+            "duration_s": 10.5,
+            "start_global_time_s": 315973283.55,
+            "end_global_time_s": 315973294.05
+          }
+        ]
+      }
+    ],
+    "cut_in_phase1_veh_in_adj_right_lane": [
+      {
+        "track_id": "25c13fd3-bae4-4692-b003-38350fd7f65c",
+        "rs2v_track_id": 82,
+        "object_type": "truck",
+        "instances": [
+          {
+            "start_frame": 36,
+            "end_frame": 103,
+            "duration_frames": 68,
+            "start_time_s": 3.6,
+            "end_time_s": 10.3,
+            "duration_s": 6.7,
+            "start_global_time_s": 315973287.05,
+            "end_global_time_s": 315973293.75
+          }
+        ]
+      }
+    ],
+    "cut_in_phase2_partial_merge": [],
+    "cut_in_phase3_aligned_and_close": [
+      {
+        "track_id": "c7be87be-cb54-4ed9-88ea-c657fcc20f05",
+        "rs2v_track_id": 80,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 27,
+            "end_frame": 156,
+            "duration_frames": 130,
+            "start_time_s": 2.7,
+            "end_time_s": 15.6,
+            "duration_s": 12.9,
+            "start_global_time_s": 315973286.15,
+            "end_global_time_s": 315973299.05
+          }
+        ]
+      }
+    ],
+    "cut_in_from_right_full_sequence": []
+  }
+}

@@ -1,0 +1,319 @@
+import os
+from collections import defaultdict
+from typing import List, Dict
+
+import pandas as pd
+import pickle
+import SG_Primitives as P
+import SG_Utils as utils
+import Property
+from SymbolicEntity import SymbolicEntity, ConcreteEntity
+from SymbolicProperty import ConcreteProperty, SymbolicProperty, UnboundEntityError
+from symbolic_properties_ego_only import all_symbolic_properties as ego_all_symbolic_properties
+from symbolic_properties import all_symbolic_properties
+from time import time
+from PIL import Image
+from functools import partial
+from pathlib import Path
+import json
+
+
+class SymbolicViolation:
+    def __init__(self, property_name: str, violation_time, initial_frame,
+                 entity_mapping: Dict[SymbolicEntity, ConcreteEntity],
+                 data_history, name_history, frames, ego_id):
+        self.property_name = property_name
+        self.violation_time = violation_time
+        self.entity_mapping = entity_mapping
+        self.initial_frame = initial_frame
+        self.data_history = data_history
+        self.name_history = name_history
+        self.frames = frames
+        self.ego_id = ego_id
+
+    def to_json(self, save_file):
+        data = {
+            'entity_mapping': {symbolic_entity.name: concrete_entity.entity_id if concrete_entity is not None else None
+                               for symbolic_entity, concrete_entity in self.entity_mapping.items()},
+            'violation_time': self.violation_time,
+            'initial_frame': self.initial_frame,
+            'ego_id': self.ego_id,
+            'name_history': [(frame, {symbolic_entity.name: name
+                                      for symbolic_entity, name in names.items()})
+                             for frame, names in self.name_history.items()],
+            'data_history': [(frame, {k: v if type(v) != UnboundEntityError else None for k, v in hist.items()})
+                             for frame, hist in self.data_history.items()]
+        }
+        with open(save_file, 'w') as f:
+            json.dump(data, f)
+
+class SymbolicSatisfaction:
+    def __init__(self, property_name: str, satisfaction_time, initial_frame,
+                 entity_mapping: Dict[SymbolicEntity, ConcreteEntity],
+                 data_history, name_history, frames, ego_id):
+        self.property_name = property_name
+        self.satisfaction_time = satisfaction_time
+        self.entity_mapping = entity_mapping
+        self.initial_frame = initial_frame
+        self.data_history = data_history
+        self.name_history = name_history
+        self.frames = frames
+        self.ego_id = ego_id
+
+    def to_json(self, save_file):
+        data = {
+            'entity_mapping': {symbolic_entity.name: concrete_entity.entity_id if concrete_entity is not None else None
+                               for symbolic_entity, concrete_entity in self.entity_mapping.items()},
+            'satisfaction_time': self.satisfaction_time,
+            'start_frame': self.initial_frame,
+            'end_frame': self.satisfaction_time,
+            'ego_id': self.ego_id,
+            'name_history': [(frame, {symbolic_entity.name: name
+                                      for symbolic_entity, name in names.items()})
+                             for frame, names in self.name_history.items()],
+            'data_history': [(frame, {k: v if type(v) != UnboundEntityError else None for k, v in hist.items()})
+                             for frame, hist in self.data_history.items()]
+        }
+        with open(save_file, 'w') as f:
+            json.dump(data, f)
+
+class SymbolicMonitor:
+    def __new__(cls, *args, **kwargs):
+        if (len(args) > 0 or len(kwargs) > 0) and hasattr(cls,
+                                                          'monitor_instance'):
+            del cls.monitor_instance
+
+        if not hasattr(cls, 'monitor_instance'):
+            cls.monitor_instance = super(SymbolicMonitor, cls).__new__(cls)
+            # cls.monitor_instance.initialize(*args, **kwargs)
+        return cls.monitor_instance
+
+    def initialize(self, log_path, route_path, ego_only=False, phi=-1):
+        properties = ego_all_symbolic_properties if ego_only else all_symbolic_properties
+        
+        print("In initialize method. ")
+        # print the propertites
+        for prop in properties:
+            print(f"Property: {prop.name}")
+        print("\n")
+
+        if phi >= 0:  # if phi >=0, it is an index
+            properties = [properties[phi]]
+        self.symbolic_properties: List[SymbolicProperty] = properties
+        self.concrete_properties: List[ConcreteProperty] = []
+        self.previous_concrete = []
+        self.timestep = 0
+
+        self.violations = defaultdict(list)
+        self.satisfactions = defaultdict(list)
+        self.ego_id = None
+        self.last_frame = None
+
+        # Create log directory
+        self.log_path = Path(log_path)
+        self.log_path.mkdir(parents=True, exist_ok=True)
+        # Create route directory
+        self.route_path = self.log_path / route_path
+        self.route_path.mkdir(parents=True, exist_ok=True)
+        self.iterations_per_frame = {}
+
+    # def hard_reset(self):
+    #     """
+    #     Hard clear all of the data in the Monitor's properties
+    #     This should only be called if re-using the same object for a different trace
+    #     """
+    #     for property in self.symbolic_properties:
+    #         property.hard_reset()
+    #     self.concrete_properties = []
+    #     self.previous_concrete = []
+    #     self.violations.clear()
+
+    def _would_accept_on_all_false(self, concrete_prop) -> bool:
+        """
+        Returns True if the concrete property's current DFA state would transition
+        to an accepting state when all predicates are False on the next step.
+
+        This identifies "open but already valid" intervals: the scenario already
+        satisfied its minimum requirements (e.g. minimum follow duration) and is
+        still ongoing at end-of-trace, but never received the explicit False frame
+        that the Until formula needs to close the episode.
+
+        Works for any LTLf formula compiled to a DFA — no formula-specific logic.
+        State 4 in the long-following DFA (saw 2+ consecutive True frames, waiting
+        for the first False frame) passes this test; state 3 (only 1 True frame
+        seen) does not, because its all-False successor is the dead/reject state.
+        """
+        dfa = concrete_prop.dfa_view.ltlfdfa._dfa
+        false_dict = {sym: False for sym in concrete_prop.dfa_view.ltlfdfa.symbols}
+        visited = set()
+        current = concrete_prop.dfa_view.current_state
+        while current not in visited:
+            visited.add(current)
+            next_state = None
+            for _, dst, edge_data in dfa.out_edges(current, data=True):
+                try:
+                    if eval(edge_data['label'], dict(false_dict)):
+                        next_state = dst
+                        break
+                except Exception:
+                    pass
+            if next_state is None:
+                return False
+            if dfa.nodes[next_state].get('accepting', False):
+                return True
+            current = next_state
+        return False
+
+    def check(self, sg, save_usage_information=False):
+        self.last_frame = sg.graph['frame']
+        if self.ego_id is None:
+            for node in sg.nodes:
+                if 'ego' == node.name:
+                    self.ego_id = node.attr[utils.ID_ATTR]
+        # add new concrete properties
+        # for symbolic_prop in self.symbolic_properties:
+        #     self.concrete_properties.extend(symbolic_prop.make_concrete(sg))
+        # additional_concrete = []
+        # for concrete_prop in self.concrete_properties:
+        #     additional_concrete = concrete_prop.additional_concrete(sg)
+        # self.concrete_properties.extend(additional_concrete)
+        self.concrete_properties.extend([symbolic_prop.make_blank(sg) for symbolic_prop in self.symbolic_properties])
+        to_keep = []
+        to_check = self.concrete_properties
+
+        # print(f"Symbolic Properties: {self.symbolic_properties[0].name}")
+        # print(f"Concrete Properties: {self.concrete_properties}")
+
+        iterations = defaultdict(int)
+        while len(to_check) > 0:
+        # for concrete_prop in self.concrete_properties:
+            concrete_prop = to_check.pop(0)
+            iterations[concrete_prop.name] += 1
+            concrete_prop.undef = []
+            prev_state = concrete_prop.get_current_state()
+            prev_accepting = concrete_prop.is_accepting()
+            try:
+                concrete_prop.step(sg)
+
+                ## on entering an accepting state, we treat this as a satsifaction
+                if concrete_prop.is_accepting() and not prev_accepting:
+                    satisfaction = SymbolicSatisfaction(
+                        concrete_prop.name,
+                        sg.graph['frame'],
+                        concrete_prop.initial_frame,
+                        concrete_prop.entity_mapping,
+                        concrete_prop.data_history,
+                        concrete_prop.name_history,
+                        concrete_prop.frames,
+                        self.ego_id
+                    )
+
+                    # print(f"SATISFACTION ENCOUNTERED: {satisfaction.initial_frame}")
+
+                    save_dir = self.route_path / concrete_prop.name / 'satisfactions/'
+                    save_dir.mkdir(parents=True, exist_ok=True)
+                    save_file = save_dir / f'{satisfaction.satisfaction_time}.json'
+                    satisfaction.to_json(save_file)
+                    self.satisfactions[concrete_prop.name].append(satisfaction)
+
+                if concrete_prop.is_trap():
+                    self.previous_concrete.append(concrete_prop)
+                    if not concrete_prop.is_accepting():
+                    # if concrete_prop.is_accepting():
+                        violation = SymbolicViolation(concrete_prop.name,
+                                                      sg.graph['frame'],
+                                                      concrete_prop.initial_frame,
+                                                      concrete_prop.entity_mapping,
+                                                      concrete_prop.data_history,
+                                                      concrete_prop.name_history,
+                                                      concrete_prop.frames,
+                                                      self.ego_id)
+                        save_dir = self.route_path / concrete_prop.name / 'violations/'
+                        save_dir.mkdir(parents=True, exist_ok=True)
+                        save_file = save_dir / f'{violation.violation_time}.json'
+                        violation.to_json(save_file)
+                        self.violations[concrete_prop.name].append(violation)
+                else:
+                    to_keep.append(concrete_prop)
+                # handle undefs that were encountered
+                if len(concrete_prop.undef) > 0:
+                    concrete_prop.undef = list(set(concrete_prop.undef))  # remove dupes
+                    extensions = concrete_prop.additional_concrete_specific(sg, concrete_prop.undef, include_none=False, current_state=prev_state)
+                    to_check.extend(extensions)
+            except UnboundEntityError as e:
+                extensions = concrete_prop.additional_concrete_specific(sg, e.entities, include_none=False, current_state=prev_state)
+                to_check.extend(extensions)
+        self.concrete_properties = to_keep
+        self.iterations_per_frame[sg.graph['frame']] = iterations
+        self.timestep += 1
+
+    def save_final_output(self):
+        """
+        # for symbolic_prop in self.symbolic_properties:
+        save_file = self.route_path/'stats.json'
+        self.route_path.mkdir(parents=True, exist_ok=True)
+        with open(save_file, 'w') as f:
+            json.dump(self.iterations_per_frame, f)
+        for prop_name, violations in self.violations.items():
+            save_dir = self.route_path/prop_name/'violations/'
+            save_dir.mkdir(parents=True, exist_ok=True)
+            for violation in violations:
+                save_file = save_dir/f'{violation.violation_time}.json'
+                violation.to_json(save_file)
+
+        for prop_name, satisfactions in self.satisfactions.items():
+            save_dir = self.route_path/prop_name/'satisfactions/'
+            save_dir.mkdir(parents=True, exist_ok=True)
+            for satisfaction in satisfactions:
+                save_file = save_dir/f'{satisfaction.satisfaction_time}.json'
+                satisfaction.to_json(save_file)
+        """
+        # --- End-of-trace finalization ---
+        # Flush concrete properties that are still open at the last real frame but
+        # had already satisfied the property's requirements.  A property qualifies
+        # if (a) it is not yet in an accepting state (otherwise it was already
+        # emitted during the trace) and (b) its current DFA state would transition
+        # directly to an accepting state if all predicates were False on the next
+        # step.  Condition (b) is the general-purpose signal for "minimum
+        # requirements met, just waiting for an explicit closing False frame."
+        if self.last_frame is not None:
+            for concrete_prop in self.concrete_properties:
+                if (not concrete_prop.is_accepting()
+                        and self._would_accept_on_all_false(concrete_prop)):
+                    satisfaction = SymbolicSatisfaction(
+                        concrete_prop.name,
+                        self.last_frame,
+                        concrete_prop.initial_frame,
+                        concrete_prop.entity_mapping,
+                        concrete_prop.data_history,
+                        concrete_prop.name_history,
+                        concrete_prop.frames,
+                        self.ego_id,
+                    )
+                    self.satisfactions[concrete_prop.name].append(satisfaction)
+
+        for prop_name, satisfactions in self.satisfactions.items():
+
+            # print(f"For prop name: {prop_name}:")
+            # print(f"number of satisfactions {len(satisfactions)}")
+            # print(f"satisfaction prop name: {satisfactions[0].property_name}")
+            # print(f"inital frame: {satisfactions[0].initial_frame}")
+            save_dir = self.route_path / prop_name / 'satisfactions/'
+            save_dir.mkdir(parents=True, exist_ok=True)
+
+            merged = {}
+            for s in satisfactions:
+                # key = (end_frame, entity_mapping)
+                mapping_key = tuple(sorted(
+                    (sym.name, ent.entity_id if ent is not None else None)
+                    for sym, ent in s.entity_mapping.items()
+                ))
+                key = (s.satisfaction_time, mapping_key)
+
+                # keep the one with smallest initial_frame
+                if key not in merged or s.initial_frame < merged[key].initial_frame:
+                    merged[key] = s
+
+            for s in merged.values():
+                save_file = save_dir / f'{s.satisfaction_time}.json'
+                s.to_json(save_file)

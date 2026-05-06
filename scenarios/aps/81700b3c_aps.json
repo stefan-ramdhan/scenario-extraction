@@ -1,0 +1,279 @@
+{
+  "scenario_uuid": "81700b3c",
+  "total_frames": 156,
+  "aps": {
+    "lead_vehicle_in_ego_lane_30m": [],
+    "lead_vehicle_in_ego_lane_60m": [
+      {
+        "track_id": "6e2d584e-6580-4ac9-8e0c-cb70ef852088",
+        "rs2v_track_id": 32,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 45,
+            "end_frame": 50,
+            "duration_frames": 6,
+            "start_time_s": 4.5,
+            "end_time_s": 5.0,
+            "duration_s": 0.5,
+            "start_global_time_s": 315973551.35,
+            "end_global_time_s": 315973551.85
+          }
+        ]
+      },
+      {
+        "track_id": "ceb28110-854e-4cb6-be26-56cf345360b5",
+        "rs2v_track_id": 21,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 41,
+            "end_frame": 46,
+            "duration_frames": 6,
+            "start_time_s": 4.1,
+            "end_time_s": 4.6,
+            "duration_s": 0.5,
+            "start_global_time_s": 315973550.95,
+            "end_global_time_s": 315973551.45
+          },
+          {
+            "start_frame": 49,
+            "end_frame": 53,
+            "duration_frames": 5,
+            "start_time_s": 4.9,
+            "end_time_s": 5.3,
+            "duration_s": 0.4,
+            "start_global_time_s": 315973551.75,
+            "end_global_time_s": 315973552.15
+          }
+        ]
+      },
+      {
+        "track_id": "f0779964-2b37-4710-b9e7-6dace7466d53",
+        "rs2v_track_id": 51,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 38,
+            "end_frame": 42,
+            "duration_frames": 5,
+            "start_time_s": 3.8,
+            "end_time_s": 4.2,
+            "duration_s": 0.4,
+            "start_global_time_s": 315973550.65,
+            "end_global_time_s": 315973551.05
+          },
+          {
+            "start_frame": 52,
+            "end_frame": 58,
+            "duration_frames": 7,
+            "start_time_s": 5.2,
+            "end_time_s": 5.8,
+            "duration_s": 0.6,
+            "start_global_time_s": 315973552.05,
+            "end_global_time_s": 315973552.65
+          }
+        ]
+      }
+    ],
+    "cut_in_phase1_veh_in_adj_right_lane": [
+      {
+        "track_id": "2d9016dc-502b-4089-a23e-1a1099e85f5b",
+        "rs2v_track_id": 166,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 9,
+            "end_frame": 105,
+            "duration_frames": 97,
+            "start_time_s": 0.9,
+            "end_time_s": 10.5,
+            "duration_s": 9.6,
+            "start_global_time_s": 315973547.75,
+            "end_global_time_s": 315973557.35
+          }
+        ]
+      },
+      {
+        "track_id": "5327f604-29d5-4bca-94ec-66daac8fbfd1",
+        "rs2v_track_id": 10,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 1,
+            "end_frame": 55,
+            "duration_frames": 55,
+            "start_time_s": 0.1,
+            "end_time_s": 5.5,
+            "duration_s": 5.4,
+            "start_global_time_s": 315973546.95,
+            "end_global_time_s": 315973552.35
+          },
+          {
+            "start_frame": 122,
+            "end_frame": 147,
+            "duration_frames": 26,
+            "start_time_s": 12.2,
+            "end_time_s": 14.7,
+            "duration_s": 2.5,
+            "start_global_time_s": 315973559.05,
+            "end_global_time_s": 315973561.55
+          }
+        ]
+      },
+      {
+        "track_id": "66ee08df-6e74-444e-80c8-e5cdcfc73331",
+        "rs2v_track_id": 34,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 90,
+            "end_frame": 154,
+            "duration_frames": 65,
+            "start_time_s": 9.0,
+            "end_time_s": 15.4,
+            "duration_s": 6.4,
+            "start_global_time_s": 315973555.85,
+            "end_global_time_s": 315973562.25
+          }
+        ]
+      },
+      {
+        "track_id": "729b5ffb-2e25-48e5-96d5-17f1d649dfe1",
+        "rs2v_track_id": 33,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 103,
+            "end_frame": 103,
+            "duration_frames": 1,
+            "start_time_s": 10.3,
+            "end_time_s": 10.3,
+            "duration_s": 0.0,
+            "start_global_time_s": 315973557.15,
+            "end_global_time_s": 315973557.15
+          },
+          {
+            "start_frame": 128,
+            "end_frame": 149,
+            "duration_frames": 22,
+            "start_time_s": 12.8,
+            "end_time_s": 14.9,
+            "duration_s": 2.1,
+            "start_global_time_s": 315973559.65,
+            "end_global_time_s": 315973561.75
+          }
+        ]
+      },
+      {
+        "track_id": "7b1df872-0c10-443f-8d08-83dbb6db6363",
+        "rs2v_track_id": null,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 20,
+            "end_frame": 105,
+            "duration_frames": 86,
+            "start_time_s": 2.0,
+            "end_time_s": 10.5,
+            "duration_s": 8.5,
+            "start_global_time_s": 315973548.85,
+            "end_global_time_s": 315973557.35
+          }
+        ]
+      },
+      {
+        "track_id": "a7d968cb-ec4d-430c-bc48-e76d93a6eadd",
+        "rs2v_track_id": 24,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 107,
+            "end_frame": 107,
+            "duration_frames": 1,
+            "start_time_s": 10.7,
+            "end_time_s": 10.7,
+            "duration_s": 0.0,
+            "start_global_time_s": 315973557.55,
+            "end_global_time_s": 315973557.55
+          },
+          {
+            "start_frame": 109,
+            "end_frame": 110,
+            "duration_frames": 2,
+            "start_time_s": 10.9,
+            "end_time_s": 11.0,
+            "duration_s": 0.1,
+            "start_global_time_s": 315973557.75,
+            "end_global_time_s": 315973557.85
+          },
+          {
+            "start_frame": 138,
+            "end_frame": 147,
+            "duration_frames": 10,
+            "start_time_s": 13.8,
+            "end_time_s": 14.7,
+            "duration_s": 0.9,
+            "start_global_time_s": 315973560.65,
+            "end_global_time_s": 315973561.55
+          }
+        ]
+      },
+      {
+        "track_id": "d2a96613-ff96-4512-bd73-2adc160de754",
+        "rs2v_track_id": 71,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 91,
+            "end_frame": 155,
+            "duration_frames": 65,
+            "start_time_s": 9.1,
+            "end_time_s": 15.5,
+            "duration_s": 6.4,
+            "start_global_time_s": 315973555.95,
+            "end_global_time_s": 315973562.35
+          }
+        ]
+      }
+    ],
+    "cut_in_phase2_partial_merge": [
+      {
+        "track_id": "2d9016dc-502b-4089-a23e-1a1099e85f5b",
+        "rs2v_track_id": 166,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 127,
+            "end_frame": 142,
+            "duration_frames": 16,
+            "start_time_s": 12.7,
+            "end_time_s": 14.2,
+            "duration_s": 1.5,
+            "start_global_time_s": 315973559.55,
+            "end_global_time_s": 315973561.05
+          }
+        ]
+      },
+      {
+        "track_id": "5327f604-29d5-4bca-94ec-66daac8fbfd1",
+        "rs2v_track_id": 10,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 139,
+            "end_frame": 155,
+            "duration_frames": 17,
+            "start_time_s": 13.9,
+            "end_time_s": 15.5,
+            "duration_s": 1.6,
+            "start_global_time_s": 315973560.75,
+            "end_global_time_s": 315973562.35
+          }
+        ]
+      }
+    ],
+    "cut_in_phase3_aligned_and_close": [],
+    "cut_in_from_right_full_sequence": []
+  }
+}

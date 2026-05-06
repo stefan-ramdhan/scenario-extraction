@@ -1,0 +1,75 @@
+{
+  "scenario_uuid": "f648b945",
+  "total_frames": 156,
+  "aps": {
+    "lead_vehicle_in_ego_lane_30m": [],
+    "lead_vehicle_in_ego_lane_60m": [
+      {
+        "track_id": "2684e427-4e03-4290-8274-8360721f9837",
+        "rs2v_track_id": 1,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 1,
+            "end_frame": 155,
+            "duration_frames": 155,
+            "start_time_s": 0.1,
+            "end_time_s": 15.5,
+            "duration_s": 15.4,
+            "start_global_time_s": 315969794.65,
+            "end_global_time_s": 315969810.05
+          }
+        ]
+      }
+    ],
+    "cut_in_phase1_veh_in_adj_right_lane": [
+      {
+        "track_id": "dbc408eb-8144-4a7f-97b7-a908de87c2e3",
+        "rs2v_track_id": 3,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 1,
+            "end_frame": 85,
+            "duration_frames": 85,
+            "start_time_s": 0.1,
+            "end_time_s": 8.5,
+            "duration_s": 8.4,
+            "start_global_time_s": 315969794.65,
+            "end_global_time_s": 315969803.05
+          },
+          {
+            "start_frame": 88,
+            "end_frame": 98,
+            "duration_frames": 11,
+            "start_time_s": 8.8,
+            "end_time_s": 9.8,
+            "duration_s": 1.0,
+            "start_global_time_s": 315969803.35,
+            "end_global_time_s": 315969804.35
+          }
+        ]
+      },
+      {
+        "track_id": "f29ee499-7337-4490-b236-296e4825c2e7",
+        "rs2v_track_id": 120,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 75,
+            "end_frame": 155,
+            "duration_frames": 81,
+            "start_time_s": 7.5,
+            "end_time_s": 15.5,
+            "duration_s": 8.0,
+            "start_global_time_s": 315969802.05,
+            "end_global_time_s": 315969810.05
+          }
+        ]
+      }
+    ],
+    "cut_in_phase2_partial_merge": [],
+    "cut_in_phase3_aligned_and_close": [],
+    "cut_in_from_right_full_sequence": []
+  }
+}

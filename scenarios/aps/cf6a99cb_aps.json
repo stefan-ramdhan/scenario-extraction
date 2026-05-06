@@ -1,0 +1,30 @@
+{
+  "scenario_uuid": "cf6a99cb",
+  "total_frames": 156,
+  "aps": {
+    "lead_vehicle_in_ego_lane_30m": [],
+    "lead_vehicle_in_ego_lane_60m": [],
+    "cut_in_phase1_veh_in_adj_right_lane": [
+      {
+        "track_id": "1b4acba5-8ebd-4fa2-91cb-03756c87582d",
+        "rs2v_track_id": 4,
+        "object_type": "car",
+        "instances": [
+          {
+            "start_frame": 19,
+            "end_frame": 19,
+            "duration_frames": 1,
+            "start_time_s": 1.9,
+            "end_time_s": 1.9,
+            "duration_s": 0.0,
+            "start_global_time_s": 315967600.35,
+            "end_global_time_s": 315967600.35
+          }
+        ]
+      }
+    ],
+    "cut_in_phase2_partial_merge": [],
+    "cut_in_phase3_aligned_and_close": [],
+    "cut_in_from_right_full_sequence": []
+  }
+}

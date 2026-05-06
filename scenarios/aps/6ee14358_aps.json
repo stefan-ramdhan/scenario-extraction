@@ -1,0 +1,30 @@
+{
+  "scenario_uuid": "6ee14358",
+  "total_frames": 156,
+  "aps": {
+    "lead_vehicle_in_ego_lane_30m": [],
+    "lead_vehicle_in_ego_lane_60m": [
+      {
+        "track_id": "375008be-473d-421a-b7d4-5f7f7de4570f",
+        "rs2v_track_id": 15,
+        "object_type": "truck",
+        "instances": [
+          {
+            "start_frame": 86,
+            "end_frame": 155,
+            "duration_frames": 70,
+            "start_time_s": 8.6,
+            "end_time_s": 15.5,
+            "duration_s": 6.9,
+            "start_global_time_s": 315968272.95,
+            "end_global_time_s": 315968279.85
+          }
+        ]
+      }
+    ],
+    "cut_in_phase1_veh_in_adj_right_lane": [],
+    "cut_in_phase2_partial_merge": [],
+    "cut_in_phase3_aligned_and_close": [],
+    "cut_in_from_right_full_sequence": []
+  }
+}
