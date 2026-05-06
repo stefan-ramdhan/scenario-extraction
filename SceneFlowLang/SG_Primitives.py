@@ -41,7 +41,6 @@ def parse_node_set(node_set: node_set_type, sg: nx.DiGraph,
     else:
         return node_set
 
-# added by Stefan
 def getAttr(node_set, attr_name):
     """
     Primitive to extract a scalar attribute value from a singleton node set.

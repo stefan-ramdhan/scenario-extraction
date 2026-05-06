@@ -21,8 +21,7 @@ from typing import List, Dict, Optional
 
 _MY_RESULTS_DIR = Path(__file__).parent
 _OUTPUT_BASE    = Path(
-    "/home/stefan/Documents/projects/scenario-extraction"
-    "/sg_processing/argo2/output/binary"
+    "sg_processing/argo2/output/binary"
 )
 
 # Overridden in main() based on --data flag

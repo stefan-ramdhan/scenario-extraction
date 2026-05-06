@@ -169,7 +169,7 @@ class ConcreteProperty:
                 param_list.append(arg)
         # if len(local_undef) > 0:
         #     return UnboundEntityError(local_undef)
-        if predicate.func.__name__ in ['filterByAttr', 'relSet', 'filterByGraphAttr']: #  Stefan added filterByGraphAttr (for filtering by metadata instead of node sets.)
+        if predicate.func.__name__ in ['filterByAttr', 'relSet', 'filterByGraphAttr']: #  filterByGraphAttr filters by metadata instead of node sets
             return predicate.func(*param_list, sg, self.entity_mapping, **predicate.keywords)
         else:
             return predicate.func(*param_list, **predicate.keywords)
