@@ -193,11 +193,3 @@ Scripts to re-run SceneFlowLang scenario extraction directly from the provided s
 Scripts covering the complete pipeline: running RoadScene2Vec on raw Argoverse 2 sensor data to regenerate scene graphs, followed by scenario extraction end-to-end.
 
 ---
-
-## Authors and acknowledgment
-
-Stefan Ramdhan
-
-## License
-
-See [LICENSE](LICENSE) if present.
