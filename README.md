@@ -73,7 +73,7 @@ python replicate_data/scripts/table_1_ablation.py
 
 **Dependencies:** standard library only (no extra packages required beyond what is already used by `scenarios/`).
 
-**Expected output** (values should match the paper exactly):
+**Expected output**:
 
 ```
 Table 1: Ablation — many-to-one matching, 50% overlap, track-aware (rows 1-9) / non-track-aware (rows 10-12)
@@ -100,13 +100,13 @@ Tracking, State, & Map (non-track-aware)    φ_long_following (30 m)       1368 
 
 #### Table 2 — Ablation study (timestamp-based temporal localization)
 
-Reproduces Table 2, which evaluates the same SG levels using duration-based (timestamp) matching rather than instance counting. TP/FP/FN are measured in seconds of overlap rather than interval counts.
+Reproduces Table 2, which evaluates the same SG levels using timestamp-based matching rather than instance counting. TP/FP/FN are measured in timestamp-based overlap rather than interval counts.
 
 ```bash
 python replicate_data/scripts/table_2_ablation_temporal.py
 ```
 
-**Expected output** (values should match the paper exactly):
+**Expected output**:
 
 ```
 Table 2: Ablation — timestamp-based temporal localization, track-aware (rows 1-9) / non-track-aware (rows 10-12)
@@ -160,7 +160,7 @@ Level III: Tracking, State, & Map           φ_long_following (30 m)       848  
 -------------------------------------------------------------------------------------------------------------
 ```
 
-> **Note on Level II, long_following (30 m):** The paper lists TPR=0.706, TNR=0.910 for this row, but those values are internally inconsistent with the paper's own balanced accuracy of 0.845 — (0.706+0.910)/2 = 0.808 ≠ 0.845. The values produced here (TPR=0.915, TNR=0.776) are consistent: (0.915+0.776)/2 = 0.845. This was a typo, and will be fixed in the camera-ready version of the paper.
+> **Note on Level II, long_following (30 m):** The paper lists TPR=0.706, TNR=0.910 for this row. This is inconsistent with the paper, due to a typographical error, and will be fixed in the camera-ready version of the paper.
 
 #### Table 4 — SG track fragmentation
 
@@ -170,7 +170,7 @@ Reproduces Table 4, which reports how SG (RoadScene2Vec) tracks fragment relativ
 python replicate_data/scripts/table_4_track_fragmentation.py
 ```
 
-**Expected output** (values match the paper exactly):
+**Expected output**:
 
 ```
 Table 4: SG track fragmentation relative to AV2 tracks (GT scenario tracks)
@@ -189,7 +189,7 @@ Reproduces Table 5, which reports unique instance counts, median durations, uniq
 python replicate_data/scripts/table_5_compute_coverage.py
 ```
 
-**Expected output** (values match the paper exactly):
+**Expected output**:
 
 ```
 Table 5: Scenario coverage of the Argoverse 2 dataset (track + HD map SG)
@@ -211,17 +211,14 @@ Scenario                                    Unique # Instances  Median Duration 
 
 Re-runs SceneFlowLang on the provided scene graphs, regenerates `extractions.json`, then prints all paper tables. This reproduces the extraction results that Replication Level 1 reads from pre-computed data.
 
-#### Zenodo data
+#### Processed Scene Graphs from Zenodo
 
-The following files must be downloaded from Zenodo before running:
+The scene graph data is fetched automatically the first time the script runs — no manual downloads required.
 
 | File | Size | How obtained |
 |------|------|--------------|
 | `first_half_data.zip` | 663 MB | auto-downloaded and extracted by the script |
 | `second_half_data.zip` | 660 MB | auto-downloaded and extracted by the script |
-| `track_mappings.json` | 3 MB | auto-downloaded by the script |
-
-All three files are fetched automatically the first time the script runs — no manual downloads required.
 
 #### Prerequisites
 
@@ -233,7 +230,7 @@ bash replicate_data/setup_tcp_env.sh
 
 **2. Mona model checker** — installed automatically by the script if not already present.
 
-**3. Zenodo data** — downloaded automatically by the script on first run (~1.3 GB total).
+**3. Processed Scene Graphs from Zenodo** — the two zip files (~1.3 GB total) are downloaded automatically by the script on first run.
 
 #### Running Replication Level 2
 
@@ -246,17 +243,16 @@ bash replicate_data/replicate_level2.sh
 
 The script will:
 1. If scene graph data is absent, offer to download it from Zenodo (~1.3 GB)
-2. If `track_mappings.json` is absent, download it from Zenodo (~3 MB)
-3. Install mona if not already present
-4. Run SceneFlowLang on all three SG levels (tracks, tracks+state, tracks+state+map) for both data halves — 6 jobs total
-5. Rebuild `replicate_data/precomputed/extractions.json` from the new results
-6. Print Tables 1–5
+2. Install mona if not already present
+3. Run SceneFlowLang on all three SG levels (tracks, tracks+state, tracks+state+map) for both data halves — 6 jobs total
+4. Rebuild `replicate_data/precomputed/extractions.json` from the new results
+5. Print Tables 1–5
 
 **Expected runtime:** 1–3 hours depending on available CPU cores.
 
 **Expected output:** Tables 1–5 with values closely matching the paper. Table 4 (track fragmentation) is read from the pre-committed `fragmentation.json` and is not regenerated at this level.
 
-> **Note on Level II, φ_long_following (60 m) precision:** When re-running SceneFlowLang, the Level II `φ_long_following (60 m)` precision may differ from the paper by approximately 0.001. This is caused by one additional borderline detection (a 7-frame, ~0.7 s window in log `bffb0c9e`) that appears when processing the Zenodo-archived scene graphs but was absent in the original paper run. The Zenodo SG data was regenerated from the Argoverse 2 raw sensor data for archival, and minor floating-point differences in the kinematics computation (velocity and distance estimates) cause this single detection to just cross the `φ_long_following` threshold in the archived data but not in the original. The effect on the reported metric is negligible and does not affect any conclusions.
+> **Note on Level II, φ_long_following (60 m) precision:** When re-running SceneFlowLang, the Level II `φ_long_following (60 m)` precision may differ from the paper by approximately 0.001. This is caused by minor floating-point differences in the kinematics computation that cause this single detection to just cross the `φ_long_following` threshold in the archived data but not in the original. The effect on the reported metric is negligible and does not affect any conclusions.
 
 ---
 

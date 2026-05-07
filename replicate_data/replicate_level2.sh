@@ -13,7 +13,6 @@
 #   3. Scene graph data in SceneFlowLang/ (script will offer to download if absent):
 #        SceneFlowLang/first_half_data/   (SG_tracks/, SG_tracks_kinematics/, SG_tracks_kinematics_map/)
 #        SceneFlowLang/second_half_data/  (same structure)
-#   4. Track mapping file — downloaded automatically if not present
 #
 # Usage
 # -----
@@ -207,15 +206,6 @@ else
     # ---------------------------------------------------------------------------
 
     echo "Checking prerequisites ..."
-
-    if [[ ! -f "$REPO_ROOT/replicate_data/matched/track_mappings.json" ]]; then
-        echo "Downloading track_mappings.json (~3 MB) ..."
-        mkdir -p "$REPO_ROOT/replicate_data/matched"
-        download \
-            "https://zenodo.org/records/20057765/files/track_mappings.json?download=1" \
-            "$REPO_ROOT/replicate_data/matched/track_mappings.json"
-        echo
-    fi
 
     if ! command -v mona &>/dev/null; then
         echo "mona not found — installing via SceneFlowLang/install_mona.sh ..."
