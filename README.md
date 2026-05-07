@@ -32,7 +32,7 @@ Replication Level 2 requires a conda environment called `tcp_env`. If you do not
    bash replicate_data/setup_tcp_env.sh
    ```
 
-The setup script will check for conda, create the environment from `SceneFlowLang/tcp_environment.yml`, and print next steps. Replication Level 1 does not require conda.
+The setup script will check for conda, create the environment from `SceneFlowLang/tcp_environment.yml`, and print next steps.
 
 ---
 
@@ -71,7 +71,7 @@ Reproduces Table 1, which compares precision / recall / F1 across three scene-gr
 python replicate_data/scripts/table_1_ablation.py
 ```
 
-**Dependencies:** standard library only (no extra packages required beyond what is already used by `scenarios/`).
+**Dependencies:** None.
 
 **Expected output**:
 
@@ -160,7 +160,7 @@ Level III: Tracking, State, & Map           φ_long_following (30 m)       848  
 -------------------------------------------------------------------------------------------------------------
 ```
 
-> **Note on Level II, long_following (30 m):** The paper lists TPR=0.706, TNR=0.910 for this row. This is inconsistent with the paper, due to a typographical error, and will be fixed in the camera-ready version of the paper.
+> **Note on Level II, long_following (30 m):** The paper lists TPR=0.706, TNR=0.910 for this row. This is a typographical error in the paper, and will be fixed in the camera-ready version of the paper.
 
 #### Table 4 — SG track fragmentation
 
@@ -213,7 +213,7 @@ Re-runs SceneFlowLang on the provided scene graphs, regenerates `extractions.jso
 
 #### Processed Scene Graphs from Zenodo
 
-The scene graph data is fetched automatically the first time the script runs — no manual downloads required.
+The scene graph data is fetched automatically the first time the script runs, upon a prompt.
 
 | File | Size | How obtained |
 |------|------|--------------|
