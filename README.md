@@ -16,34 +16,39 @@ scenario-extraction/
 └── replicate_data/         # Replication scripts — reproduce paper tables from pre-computed results
 ```
 
-## Replication packages
+## Replication package
 
-The `replicate_data/` directory contains self-contained scripts for reproducing results from the paper. The replication study is being released in stages:
+The `replicate_data/` directory contains self-contained scripts for reproducing results from the paper at three levels of depth:
 
-| Stage | Description | Status |
-|-------|-------------|--------|
+| Replication Level | Description | Status |
+|-------------------|-------------|--------|
 | 1 | Table replication — reproduce all paper tables from pre-computed results | **Available now** |
-| 2 | Scenario extraction from scene graphs — re-run SceneFlowLang on the provided scene graphs | Coming soon |
+| 2 | Scenario extraction from scene graphs — re-run SceneFlowLang on the provided scene graphs | **Available now** |
 | 3 | Full pipeline — scene graph generation from raw sensor data + scenario extraction | Coming soon |
+
+Each level is a strict superset of the previous: Level 2 reproduces the pre-computed results that Level 1 reads, and Level 3 will reproduce the scene graphs that Level 2 reads.
 
 ---
 
-### Stage 1 — Table replication (available now)
+### Replication Level 1 — Table replication
 
-These scripts read the pre-computed extraction outputs and ground-truth annotation packages, then print the corresponding paper table to stdout. No re-running of the scene-graph pipeline or SceneFlowLang is needed.
+Reads the pre-computed extraction outputs and ground-truth annotation packages, then prints each paper table to stdout. No re-running of the scene-graph pipeline or SceneFlowLang is needed — all required data is included in the repository.
 
-Run all scripts from the **repo root**:
+Run from the **repo root**:
 
 ```bash
 cd /path/to/scenario-extraction
+bash replicate_data/replicate_level1.sh
 ```
+
+This prints Tables 1–5 in sequence. To run individual tables:
 
 #### Table 1 — Ablation study (many-to-one matching, 50% overlap)
 
 Reproduces Table 1, which compares precision / recall / F1 across three scene-graph semantic levels (tracking-only, tracking+state, tracking+state+map) and a non-track-aware baseline, for the cut-in and longitudinal-following scenarios.
 
 ```bash
-python replicate_data/table_1_ablation.py
+python replicate_data/scripts/table_1_ablation.py
 ```
 
 **Dependencies:** standard library only (no extra packages required beyond what is already used by `scenarios/`).
@@ -78,7 +83,7 @@ Tracking, State, & Map (non-track-aware)    φ_long_following (30 m)       1368 
 Reproduces Table 2, which evaluates the same SG levels using duration-based (timestamp) matching rather than instance counting. TP/FP/FN are measured in seconds of overlap rather than interval counts.
 
 ```bash
-python replicate_data/table_2_ablation_temporal.py
+python replicate_data/scripts/table_2_ablation_temporal.py
 ```
 
 **Expected output** (values should match the paper exactly):
@@ -111,7 +116,7 @@ Tracking, State, & Map (non-track-aware)    φ_long_following (30 m)         0.8
 Reproduces Table 3, which evaluates scenario detection at the log level: each of the 848 logs is classified as positive or negative, and log-level balanced accuracy, TP rate, and TN rate are reported across the three SG levels.
 
 ```bash
-python replicate_data/table_3_ablation_log_metrics.py
+python replicate_data/scripts/table_3_ablation_log_metrics.py
 ```
 
 **Expected output** (values match the paper; N=848 vs paper's 850 due to 2 logs absent from results). Argoverse 2 Training and Validation splits have a total of 848 driving logs, instead of the 850 as advertised, as two scenarios are duplicated:
@@ -142,7 +147,7 @@ Level III: Tracking, State, & Map           φ_long_following (30 m)       848  
 Reproduces Table 4, which reports how SG (RoadScene2Vec) tracks fragment relative to the ground-truth AV2 tracks, restricted to tracks that participate in GT scenario APs.
 
 ```bash
-python replicate_data/table_4_track_fragmentation.py
+python replicate_data/scripts/table_4_track_fragmentation.py
 ```
 
 **Expected output** (values match the paper exactly):
@@ -161,7 +166,7 @@ Table 4: SG track fragmentation relative to AV2 tracks (GT scenario tracks)
 Reproduces Table 5, which reports unique instance counts, median durations, unique scene counts, and dataset coverage percentage for each scenario variant, using the track+state+map scene graphs.
 
 ```bash
-python replicate_data/table_5_compute_coverage.py
+python replicate_data/scripts/table_5_compute_coverage.py
 ```
 
 **Expected output** (values match the paper exactly):
@@ -182,13 +187,58 @@ Scenario                                    Unique # Instances  Median Duration 
 
 ---
 
-### Stage 2 — Scenario extraction from scene graphs (coming soon)
+### Replication Level 2 — Scenario extraction from scene graphs
 
-Scripts to re-run SceneFlowLang scenario extraction directly from the provided scene graphs, reproducing the extraction results that the Stage 1 table scripts consume.
+Re-runs SceneFlowLang on the provided scene graphs, regenerates `extractions.json`, then prints all paper tables. This reproduces the extraction results that Replication Level 1 reads from pre-computed data.
+
+#### Zenodo data
+
+The following files must be downloaded from Zenodo before running:
+
+| File | Size | How obtained |
+|------|------|--------------|
+| `first_half_data.zip` | 663 MB | auto-downloaded and extracted by the script |
+| `second_half_data.zip` | 660 MB | auto-downloaded and extracted by the script |
+| `track_mappings.json` | 3 MB | auto-downloaded by the script |
+
+All three files are fetched automatically the first time the script runs — no manual downloads required.
+
+#### Prerequisites
+
+**1. Conda environment** — the script activates `tcp_env` automatically. If it does not exist yet, create it first:
+
+```bash
+conda env create -f SceneFlowLang/tcp_environment.yml
+```
+
+**2. Mona model checker** — installed automatically by the script if not already present.
+
+**3. Zenodo data** — downloaded automatically by the script on first run (~1.3 GB total).
+
+#### Running Replication Level 2
+
+Run from the **repo root**:
+
+```bash
+cd /path/to/scenario-extraction
+bash replicate_data/replicate_level2.sh
+```
+
+The script will:
+1. If scene graph data is absent, offer to download it from Zenodo (~1.3 GB)
+2. If `track_mappings.json` is absent, download it from Zenodo (~3 MB)
+3. Install mona if not already present
+4. Run SceneFlowLang on all three SG levels (tracks, tracks+state, tracks+state+map) for both data halves — 6 jobs total
+5. Rebuild `replicate_data/precomputed/extractions.json` from the new results
+6. Print Tables 1–5
+
+**Expected runtime:** 1–3 hours depending on available CPU cores.
+
+**Expected output:** Tables 1–5 with values matching the paper (same as Replication Level 1). Table 4 (track fragmentation) is read from the pre-committed `fragmentation.json` and is not regenerated at this level.
 
 ---
 
-### Stage 3 — Full pipeline: scene graph generation + scenario extraction (coming soon)
+### Replication Level 3 — Full pipeline: scene graph generation + scenario extraction (coming soon)
 
 Scripts covering the complete pipeline: running RoadScene2Vec on raw Argoverse 2 sensor data to regenerate scene graphs, followed by scenario extraction end-to-end.
 
