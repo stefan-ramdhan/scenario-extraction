@@ -528,14 +528,10 @@ def cut_in_from_right_weather():
 
 all_symbolic_properties = []
 
-for distances in ['very_near', 'near']:
-    all_symbolic_properties.append(long_following_logical_veh_decel(distances, decel=3.0))
-#     #all_symbolic_properties.append(long_following_abstract_debounce(distances, 2))
-#     all_symbolic_properties.append(long_following_abstract_debounce(distances, 3))
+for distances in ['visible', 'near']:
+    all_symbolic_properties.append(long_following_abstract_debounce(distances, 3))
 
+all_symbolic_properties.append(long_following_logical_veh_decel('very_near', decel=3.0))
 all_symbolic_properties.append(cut_in_from_right_weather())
 all_symbolic_properties.append(cut_in_from_right_veh_decel(decel=3.0))
-# all_symbolic_properties.append(veh_in_adj_right_lane_AP())
-# all_symbolic_properties.append(veh_straddling_ego_lane_AP())
-# all_symbolic_properties.append(lead_veh_too_close_AP())
-# all_symbolic_properties.append(cut_in_from_right())
+all_symbolic_properties.append(cut_in_from_right())

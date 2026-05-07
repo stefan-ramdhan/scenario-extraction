@@ -289,4 +289,3 @@ dependencies:
       - webencodings==0.5.1
       - widgetsnbextension==3.5.2
       - yaspin==2.1.0
-prefix: /home/stefan/anaconda3/envs/tcp_env

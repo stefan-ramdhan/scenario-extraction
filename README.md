@@ -16,6 +16,26 @@ scenario-extraction/
 └── replicate_data/         # Replication scripts — reproduce paper tables from pre-computed results
 ```
 
+## Setup
+
+Replication Level 2 requires a conda environment called `tcp_env`. If you do not have conda installed:
+
+1. Install [Miniconda](https://docs.conda.io/en/latest/miniconda.html) (or Anaconda). On Linux:
+   ```bash
+   wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+   bash Miniconda3-latest-Linux-x86_64.sh
+   source ~/.bashrc   # or restart your terminal
+   ```
+
+2. Create the `tcp_env` environment:
+   ```bash
+   bash replicate_data/setup_tcp_env.sh
+   ```
+
+The setup script will check for conda, create the environment from `SceneFlowLang/tcp_environment.yml`, and print next steps. Replication Level 1 does not require conda.
+
+---
+
 ## Replication package
 
 The `replicate_data/` directory contains self-contained scripts for reproducing results from the paper at three levels of depth:
@@ -205,10 +225,10 @@ All three files are fetched automatically the first time the script runs — no 
 
 #### Prerequisites
 
-**1. Conda environment** — the script activates `tcp_env` automatically. If it does not exist yet, create it first:
+**1. Conda environment** — the script activates `tcp_env` automatically. If it does not exist yet, run the setup script first (see [Setup](#setup) above):
 
 ```bash
-conda env create -f SceneFlowLang/tcp_environment.yml
+bash replicate_data/setup_tcp_env.sh
 ```
 
 **2. Mona model checker** — installed automatically by the script if not already present.
@@ -234,7 +254,9 @@ The script will:
 
 **Expected runtime:** 1–3 hours depending on available CPU cores.
 
-**Expected output:** Tables 1–5 with values matching the paper (same as Replication Level 1). Table 4 (track fragmentation) is read from the pre-committed `fragmentation.json` and is not regenerated at this level.
+**Expected output:** Tables 1–5 with values closely matching the paper. Table 4 (track fragmentation) is read from the pre-committed `fragmentation.json` and is not regenerated at this level.
+
+> **Note on Level II, φ_long_following (60 m) precision:** When re-running SceneFlowLang, the Level II `φ_long_following (60 m)` precision may differ from the paper by approximately 0.001. This is caused by one additional borderline detection (a 7-frame, ~0.7 s window in log `bffb0c9e`) that appears when processing the Zenodo-archived scene graphs but was absent in the original paper run. The Zenodo SG data was regenerated from the Argoverse 2 raw sensor data for archival, and minor floating-point differences in the kinematics computation (velocity and distance estimates) cause this single detection to just cross the `φ_long_following` threshold in the archived data but not in the original. The effect on the reported metric is negligible and does not affect any conclusions.
 
 ---
 

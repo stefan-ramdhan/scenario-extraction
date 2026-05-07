@@ -1,0 +1,13 @@
+.claude/
+
+# Downloaded Zenodo data (auto-fetched by replicate_level2.sh)
+SceneFlowLang/first_half_data/
+SceneFlowLang/second_half_data/
+replicate_data/matched/
+
+# Python bytecache
+__pycache__/
+*.pyc
+
+# SceneFlowLang violation outputs (not needed for replication)
+SceneFlowLang/my_results/*/*/violations/
